@@ -1,0 +1,77 @@
+/*==============================================================================
+Autore      : Andrea Capone		Matricola: N86001676
+Programma   : Exchange sort
+Data        : 09/12/2014
+
+Da Fare:
+Ordinare un array in modo crescente con il metodo dell'exchange sort, ovvero,
+prendo un elemento di un array che va da 1 a n, lo confronto con il successivo,
+se è maggiore tendo a spostarlo verso la posizione n dell'array e ripetendo
+questa operazione ciclicamente mi ritrovo l'array ordinato.
+------------------------------------------------------------------------------*/
+
+#include<stdio.h>
+#include<math.h>
+
+main()
+{
+    // dichiarazione variabili:
+
+    int i, // questa variabile mi serve per diminuire di 1 gli elementi dell'array che controllo (ultima posizione)
+        j, // indice dell'array
+        ordinato, // variabile che è impostata a 0 se l'array non è ordinato e 1 se è ordinato
+        app,
+        n; // dimensione array
+    int a[100]; // array di 100 elementi
+
+    // inserimento dell'array
+
+    do
+    {
+        printf("inserisci la dimensione dell'array: <max 100>\n\n");
+        scanf("%d", &n);
+    } while ((n<1) || (n>100));
+
+    for(j=0;j<n;j++)
+    {
+        printf("inserisci l'elemento %d dell'array \n" ,j+1);
+        scanf("%d", &a[j]);
+    }
+
+    // ordinamento array:
+
+        ordinato=0;  // presuppongo che l'array non sia ordinato inizialmente
+        i=1;
+        while((i<n) && (ordinato==0))
+        {
+            ordinato=1;
+            /* dico che l'array è ordinato, se nei confronti successivi non entro nell'if significa
+               che l'array è effettivamente ordinato e quindi esco dal while
+            */
+
+            for(j=0;j<n-i;j++)
+            {
+                /* dato che tendo a mettere l'elemento più grande verso l'esterno, l'elemento n-1 non
+                    ho bisogno di confrontarlo perchè so che è il più grande
+                */
+
+                if(a[j]>a[j+1])
+                {
+                    ordinato=0; // ordinato = 0 perchè l'array non è ordinato, poi scambio
+                    app=a[j];
+                    a[j]=a[j+1];
+                    a[j+1]=app;
+                }
+            }
+        }
+
+        // stampa dell'array
+
+    printf("\n\n array ordinato:\n");
+    for(j=0;j<n;j++)
+    {
+        printf("elemento [%d] %d\n", j+1, a[j]);
+    }
+
+    return(0);
+}
