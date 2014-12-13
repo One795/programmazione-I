@@ -6,7 +6,7 @@ Data        : 09/12/2014
 Da Fare:
 Ordinare un array in modo crescente con il metodo dell'exchange sort, ovvero,
 prendo un elemento di un array che va da 1 a n, lo confronto con il successivo,
-se è maggiore tendo a spostarlo verso la posizione n dell'array e ripetendo
+se è maggiore tendo a spostarlo verso la posizione n dell'array e ripetendo 
 questa operazione ciclicamente mi ritrovo l'array ordinato.
 ------------------------------------------------------------------------------*/
 
