@@ -1,0 +1,77 @@
+/*==============================================================================
+Autore      : Andrea Capone		Matricola: N86001676
+Programma   : insertion sort
+Data        : 12/12/2014
+
+Da Fare:
+Ordinare un array in modo crescente con il metodo dell'insertion sort, ovvero:
+ho una parte di array ordinato trovando il minimo e mettendolo al primo posto
+dato che il secondo elemento è maggiore del primo, dal terzo elemento, l'array
+è disordinato, quindi a partire da questo elemento l'array viene shiftato a
+sinistra finchè l'elemento disordinato non diventa minore dell'elemento che
+sto confrontando.
+
+------------------------------------------------------------------------------*/
+#include<stdio.h>
+#include<math.h>
+
+int main()
+{
+     // dichiarazione variabili:
+
+    int i, // questa variabile serve per ordinare gli array dal terzo elemento ovvero da quello disordinato
+        j, // indice di appoggio e lo utilizzerò per shiftare
+        app,
+        n; // dimensione array
+    int a[100]; // array di max 100 elementi
+
+    // inserimento dell'array
+
+    do
+    {
+        printf("inserisci la dimensione dell'array: <max 100>\n\n");
+        scanf("%d", &n);
+    } while ((n<1) || (n>100));
+
+    for(i=0;i<n;i++)
+    {
+        printf("\ninserisci l'elemento %d dell'array \n" ,i+1);
+        scanf("%d", &a[i]);
+    }
+
+    //trovo il minimo e lo metto al primo posto:
+    int min= a[0]; // elemento di partenza
+    int p=0; // posizione iniziale che mi servirà per spostare il minimo al primo posto
+    for(i=1;i<n;i++)
+    {
+        if (min>a[i])
+        {
+            min=a[i]; //salvo il valore del minimo e uso min come variabile di appoggio
+            p=i; // salvo la posizione del minimo
+        }
+    }
+    a[p]=a[0];
+    a[0]=min;
+    printf("minimo: %d\n", min); // stampo il minimo
+
+    // eseguo l'insertion sort dove ho i primi due elementi ordinati essendo a[0]<a[1] e faccio partire i da 2
+    for(i=2;i<n;i++)
+    {
+        j=i; // inizio a confrontare j da dove è posizionato i ogni volta
+        while(a[j]<a[j-1]) //finchè il successivo è minore del precedente lo sposto
+        {
+            app=a[j];
+            a[j]=a[j-1];
+            a[j-1]=app;
+            j=j-1;
+        }
+    }
+
+    // stampo l'array ordinato
+
+    printf("elementi dell'array:\n");
+    for(i=0;i<n;i++)
+    {
+        printf("a[%d] %d\n",i+1, a[i]);
+    }
+}
