@@ -23,7 +23,7 @@ int main()
         j, // indice di appoggio e lo utilizzerò per shiftare
         app,
         n; // dimensione array
-    int a[100]; // array di max 100 elementi
+    int a[100]; // array di max 100 elementi 
 
     // inserimento dell'array
 
