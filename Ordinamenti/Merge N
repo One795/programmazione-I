@@ -1,0 +1,95 @@
+/*==============================================================================
+Autore      : Andrea Capone		Matricola: N86001676
+Programma   : Merge
+Data        : 11/12/2014
+
+Da Fare:
+
+Il merge consiste nel fornire in uscita un array C con gli elementi ordinati
+di 2 array a e b aventi n elementi in ingresso. a e b devono essere ordinati e
+c deve avere dimensione n+n.
+------------------------------------------------------------------------------*/
+
+#include<stdio.h>
+#include<math.h>
+
+main()
+{
+    // dichiarazione variabili:
+
+    int n, // dimensione array A e B
+        n2, // dimensione Array C
+        i, // indice array A
+        j, // indice array B
+        k; // indice array C
+    int a[100],
+        b[100],
+        c[200]; // c può avere un massimo di elementi uguale alla somma dei precedenti
+
+        // caricamento di a e b:
+
+    do
+    {
+        printf("inserisci la dimensione dei 2 array:\n");
+        scanf("%d", &n);
+    }while ((n<1)||(n>100));
+
+    // inserisco il primo elemento dei due array in modo tale che i successivi vengano inseriti in modo ordinato
+    printf("inserisci il primo elemento dell'array A\n");
+    scanf("%d", &a[0]);
+    printf("inserisci il primo elemento dell'array B\n");
+    scanf("%d", &b[0]);
+
+
+    // inserisco gli altri elementi:
+
+    for(i=1;i<n;i++) // in questo caso usiamo un indice solo per caricare a e b
+    {
+
+        printf("\ninserisci l'elemento %d dell'array A\n", i+1);
+        scanf("%d", &a[i]);
+
+        while(a[i]<a[i-1]) // con questo while voglio accertarmi che gli elementi dell'array vengono inseriti in ordine
+        {
+            printf("\n\nAttenzione! elemento %d < di elemento %d... Reinseriscilo!\n", i+1, i);
+            scanf("%d", &a[i]);
+        }
+
+        printf("\ninserisci l'elemento %d dell'array B\n", i+1);
+        scanf("%d", &b[i]);
+
+        while(b[i]<b[i-1]) // rifaccio il controllo
+        {
+            printf("\n\nAttenzione! elemento %d < di elemento %d... Reinseriscilo!\n", i+1, i);
+            scanf("%d", &b[i]);
+        }
+
+        /* mi rendo conto che a livello grafico la stampa non è delle migliori dato che devo inserire prima
+        l'elemento di a e poi di b e me lo fa re inserire se inserisco un elemento minore del precedente, ma
+        a livello di complessità è molto più leggero perchè per caricare tutti gli elementi mi basta un ciclo for
+        anzicchè utilizzarne uno per ciascun array.*/
+    }
+
+    // faccio il merge tra i due array caricati e stampo C:
+
+    n2=n*2;
+    i=0;// pongo indice di a e b a 0 così partono dal primo elemento
+    j=0;
+
+    printf("array c:\n");
+
+    for(k=0;k<n2;k++)
+    {
+        if(a[i]<=b[j])
+        {
+            c[k]=a[i];
+            i++;
+        }else
+        {
+            c[k]=b[j];
+            j++;
+        }
+        printf("elemento %d: c[%d]\n", k+1, c[k]);
+    }
+    return (0);
+}
