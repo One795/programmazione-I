@@ -1,0 +1,60 @@
+/*==============================================================================
+Autore      : Andrea Capone		Matricola: N86001676
+Programma   : Saxpy
+Data        : 11/12/2014
+
+Da Fare:
+
+La SAXPY è simile a un prodotto scalare, la sola differenza è che viene fatto
+il prodotto tra un array A per un numero alpha + un altro array B.Il risultato
+non è più una variabile ma l'array B contenente tutti gli n prodotti.
+------------------------------------------------------------------------------*/
+
+#include<stdio.h>
+#include<math.h>
+
+main()
+{
+    // dichiarazione variabili:
+
+    int n,// dimensione dei 2 array
+        i,// indice di scorrimento degli array
+        alpha; // variabile che moltiplica ogni elemento dell'array A
+    int a[100],
+        b[100];
+
+        // caricamento dei 2 array:
+
+        do
+    {
+        printf("inserisci la dimensione di 2 array: <max 100>\n\n");
+        scanf("%d", &n);
+    } while ((n<1) || (n>100));
+
+    for(i=0;i<n;i++)
+    {
+        printf("\ninserisci l'elemento %d dell'array A\n" ,i+1);
+        scanf("%d", &a[i]);
+        printf("\ninserisci l'elemento %d dell'array B\n" ,i+1);
+        scanf("%d", &b[i]);
+    }
+
+    // calcolo della Saxpy:
+
+    printf("\n\ninserisci alpha:\n");
+    scanf("%d", &alpha);
+
+    for(i=0;i<n;i++)
+    {
+        b[i]=b[i]+(a[i]*alpha);
+    }
+
+    // Stampo l'array b dopo la Saxpy:
+
+    printf("Array B:\n");
+    for(i=0;i<n;i++)
+    {
+        printf("elemento %d: B[%d]\n", i+1, b[i]);
+    }
+    return 0;
+}
