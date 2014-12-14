@@ -1,0 +1,96 @@
+/*==============================================================================
+Autore      : Andrea Capone		Matricola: N86001676
+Programma   : Matrice X Matrice
+Data        : 12/12/2014
+
+Da Fare:
+
+Calcolare il prodotto tra due matrici A [n*m] e B[m*p] e mettere il risultato in
+una matrice C [n*p]
+------------------------------------------------------------------------------*/
+
+#include<stdio.h>
+#include<math.h>
+
+main()
+{
+// dichiarazione variabili:
+
+    int i, // righe di A e di C
+        j, // colonne di B e di C
+        k, // Righe di B e colonne di A
+        // i j e k sono gli indici ovviamente!!!
+        n, // dimensione righe di A e di C
+        m, // dimensione colonne di B e di C
+        p; // dimensione Righe di B e colonne di A
+    int a[100][100],
+        b[100][100],
+        c[100][100];
+
+        // Caricamento Matrici A e B
+
+        do
+        {
+        printf("inserisci il numero di righe di A e C:\n");
+        scanf("%d",&n);
+        }while ((n<1)||(n>100));
+
+        do
+        {
+        printf("inserisci il numero di Colonne di B e C\n");
+        scanf("%d",&m);
+        }while ((m<1)||(m>100));
+
+        do
+        {
+        printf("inserisci il numero di righe di B e di Colonne di C\n");
+        scanf("%d",&p);
+        }while ((p<1)||(p>100));
+
+        // carico A:
+        for(i=0;i<n;i++)
+        {
+            for(k=0;k<m;k++)
+            {
+                printf("inserisci l'elemento di riga %d e di colonna %d della matrice A\n",i+1,k+1);
+                scanf("%d",&a[i][k]);
+            }
+        }
+
+        // carico B:
+
+        for(k=0;k<m;k++)
+        {
+            for(j=0;j<p;j++)
+            {
+                printf("inserisci l'elemento di riga %d e di colonna %d della matrice B\n",k+1,j+1);
+                scanf("%d",&b[k][j]);
+            }
+        }
+
+        // Faccio il prodotto e lo metto in c[i,j]:
+
+        for(i=0;i<n;i++)
+        {
+            for(j=0;j<p;j++)
+            {
+                c[i][j]=0;
+                    for(k=0;k<p;k++)
+                    {
+                        c[i][j]=c[i][j]+(a[i][k]*b[k][j]);
+                    }
+            }
+        }
+
+        // stampo la matrice C:
+
+        printf("Matrice C:\n");
+        for(i=0;i<n;i++)
+        {
+            for(j=0;j<p;j++)
+            {
+                printf("elemento (%d,%d): [%d]\n", i+1, j+1, c[i][j]);
+            }
+        }
+    return(0);
+}
