@@ -1,0 +1,147 @@
+/*==============================================================================
+Autore      : Andrea Capone		Matricola: N86001676
+Programma   : Merge
+Data        : 11/12/2014
+
+Da Fare:
+
+Il merge consiste nel fornire in uscita un array C con gli elementi ordinati
+di 2 array a e b aventi n elementi in ingresso. a e b devono essere ordinati e
+c deve avere dimensione n+m considerando 2 array diversi.
+eliminare eventuali doppioni se richiesto.
+------------------------------------------------------------------------------*/
+
+#include<stdio.h>
+#include<math.h>
+
+main()
+{
+    // dichiarazione variabili:
+
+    int n, // dimensione array A
+        m, // dimensione array B
+        N, // dimensione Array C = n+m
+        i, // indice array A
+        j, // indice array B
+        k, // indice array C
+        h; // utilizzo questo indice per inserire gli elementi di un array nel caso finisse prima uno
+    char doppio; // elimino eventuali doppioni se l'utente inserisce 1
+    int a[100],
+        b[100],
+        c[200]; // c può avere un massimo di elementi uguale alla somma dei precedenti
+
+        // caricamento di a e b:
+
+    do
+    {
+        printf("inserisci la dimensione di A:\n");
+        scanf("%d", &n);
+    }while ((n<1)||(n>100));
+
+    // inserisco il primo elemento dell' array in modo tale che i successivi vengano inseriti in modo ordinato:
+
+    printf("\ninserisci l'elemento 1 dell'array A\n");
+    scanf("%d", &a[0]);
+
+    // inserisco gli altri elementi utilizzando 2 cicli dato che le dimensioni son diverse:
+
+    for(i=1;i<n;i++) // elementi di A
+    {
+
+        printf("\ninserisci l'elemento %d dell'array A\n", i+1);
+        scanf("%d", &a[i]);
+
+        while(a[i]<a[i-1]) // controllo che il successivo sia maggiore del precedente
+        {
+            printf("\n\nAttenzione! elemento %d < di elemento %d... Reinseriscilo!\n", i+1, i);
+            scanf("%d", &a[i]);
+        }
+    }
+
+    do
+    {
+        printf("\ninserisci la dimensione di B:\n");
+        scanf("%d", &m);
+    }while ((m<1)||(m>100));
+
+     printf("\ninserisci l' elemento 1 dell'array B\n"); // primo elemento
+     scanf("%d", &b[0]);
+
+    for(j=1;j<m;j++) // elementi di B
+    {
+        printf("\ninserisci l'elemento %d dell'array B\n", j+1);
+        scanf("%d", &b[j]);
+
+        while(b[j]<b[j-1]) // controllo che il successivo sia maggiore del precedente
+        {
+            printf("\n\nAttenzione! elemento %d < di elemento %d... Reinseriscilo!\n", j+1, j);
+            scanf("%d", &b[j]);
+        }
+    }
+
+
+
+    // faccio il merge tra i due array caricati e stampo C:
+
+    N=n+m;
+    i=0;// pongo indice di a e b a 0 così partono dal primo elemento
+    j=0;
+    k=0;
+    printf("array c:\n");
+
+    while(k<N)
+    {
+        if(a[i]<=b[j])
+        {
+            c[k]=a[i];
+            i++;
+        }else
+        {
+            c[k]=b[j];
+            j++;
+        }
+        printf("elemento %d: c[%d]\n", k+1, c[k]);
+        k++;
+
+        // metto i restanti elementi dell'array nel caso uno dei due finisse:
+
+        if(i>n)// A finito
+        {
+            for(h=j;h<m;h++)
+            {
+                c[k]=b[h];
+                printf("elemento %d: c[%d]\n", k+1, c[k]);
+                k++;
+            }
+        }else if(j>m)// B finito
+         {
+            for(h=i;h<n;h++)
+            {
+                c[k]=b[h];
+                printf("elemento %d: c[%d]\n", k+1, c[k]);
+                k++;
+            }
+         }
+    }
+
+    // elimino doppioni: (in realtà gli elementi non vengono eliminati, ma non vengono stampati)
+
+   printf("\n\npremi 1 per eliminare i doppioni in array C, altrimenti premi un altro tasto\n\n");
+   scanf("%d",&doppio);
+   if(doppio=1)
+    {
+        k=0;
+    int indice=1; // indice array senza doppioni
+        printf("array senza doppioni:\n");
+        while(k<N)
+        {
+            if(c[k]!=c[k+1])
+            {
+                printf("elemento %d: C[%d]\n",indice, c[k]);
+                indice++;
+            }
+            k++;
+        }
+    }
+    return (0);
+}
