@@ -1,0 +1,79 @@
+/*==============================================================================
+Autore      : Andrea Capone		Matricola: N86001676
+Programma   : Prodotto matrice per vettore
+Data        : 12/12/2014
+
+Da Fare:
+
+data una matrice n*m, un array di m elementi, calcolare la sommatoria dei
+prodotti e inserirli in un array z di n elementi (è quasi identico alla gaxpy
+ma la gaxpy vera e propria la metto in un altro programma).
+------------------------------------------------------------------------------*/
+
+#include<stdio.h>
+#include<math.h>
+
+main()
+{
+// dichiarazione variabili:
+
+    int i, // indice riga
+        j, // indice colonna
+        n, // numero righe
+        m; // numero colonne che può essere uguale al numero righe (in quel caso parliamo di matrice quadrata)
+    int a[100][100]; // matrice n*m
+    int y[100], // array m elementi (quello del prodotto)
+        z[100]; // array di uscita.
+
+        // caricamento matrice e vettore:
+        do
+        {
+        printf("inserisci il numero di righe (anche dimensione di array di uscita)\n");
+        scanf("%d",&n);
+        }while ((n<1)||(n>100));
+
+        do
+        {
+            printf("inserisci il numero di colonne (anche dimensione di array di ingresso)\n");
+            scanf("%d",&m);
+        }while ((m<1)||m>100);
+
+        // caricamento elementi matrice:
+        for(i=0;i<n;i++)
+        {
+            for(j=0;j<m;j++)
+            {
+                printf("inserisci l'elemento di riga %d e di colonna %d di A\n",i+1,j+1);
+                scanf("%d",&a[i][j]);
+            }
+        }
+
+        // caricamento dell'array:
+
+        for(j=0;j<m;j++)
+        {
+            printf("inserisci l'elemento %d dell'array y\n",j+1);
+            scanf("%d",&y[j]);
+        }
+
+        // faccio il prodotto:
+
+        for(i=0;i<n;i++)
+        {
+            z[i]=0;
+            for(j=0;j<m;j++)
+            {
+                z[i]=z[i]+(a[i][j]*y[j]);
+            }
+        }
+
+        // stampa dell'array:
+
+    printf("\n\narray Z:\n");
+    for(i=0;i<n;i++)
+    {
+        printf("elemento [%d] %d\n", i+1, z[i]);
+    }
+
+    return(0);
+}
