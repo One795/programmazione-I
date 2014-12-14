@@ -1,0 +1,68 @@
+/*==============================================================================
+Autore      : Andrea Capone		Matricola: N86001676
+Programma   : Ricerca Sequenziale
+Data        : 10/12/2014
+
+Da Fare:
+
+Dato un array di n elementi, richiedere da tastiera di trovare un
+determinato elemento utilizzando la ricerca sequenziale, ovvero confrontare l'elemento
+x da cercare con tutti gli elementi da 1 a n finchè non lo trovo, appena lo trovo mi
+fermo.
+-------------------------------------------------------------------------------------*/
+
+#include<stdio.h>
+#include<math.h>
+
+main()
+{
+    // dichiarazione variabili:
+
+    int n, // dimensione array
+        i, // per caricare l'array e stampare la posizione
+        x; // elemento da cercare
+    int a[100];
+
+        // caricamento dell'array:
+
+    do
+    {
+        printf("inserisci la dimensione dell'array <max100> :\n");
+        scanf("%d", &n);
+    }while ((n<1)||(n>100));
+
+    for(i=0;i<n;i++)
+    {
+        printf("\ninserisci l'elemento %d dell'array \n", i+1);
+        scanf("%d", &a[i]);
+    }
+
+    // stampa dell'array
+
+    printf("\n\nelementi dell'array:\n");
+    for(i=0;i<n;i++)
+    {
+        printf("elemento [%d] %d\n", i+1, a[i]);
+    }
+
+    // eseguo la ricerca:
+
+    printf("\ndimmi l'elemento che vuoi cercare:\n");
+    scanf("%d", &x);
+    int trovato=0; // variabile che mi dice che il valore non è presente nell'array
+    i=0;
+
+   while((i<n)&&(trovato==0))
+    {
+        if(x==a[i])
+        {
+            trovato=1;
+            printf("\n\nposizione elemento: %d",i+1);
+        }else
+        i++;
+    }
+    if(trovato==0)
+        printf("\n\nElemento non trovato!");
+
+    return(0);
+}
