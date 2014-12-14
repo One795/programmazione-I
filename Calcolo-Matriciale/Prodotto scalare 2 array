@@ -1,1 +1,51 @@
- 
+/*==============================================================================
+Autore      : Andrea Capone		Matricola: N86001676
+Programma   : Prodotto scalare tra 2 array
+Data        : 11/12/2014
+
+Da Fare:
+
+il prodotto scalare è una funzione che consiste nel dare 2 array di n elementi
+in ingresso e fornire un risultato uguale alla sommatoria dei loro prodotti.
+I due array hanno la stessa dimensione.
+------------------------------------------------------------------------------*/
+
+#include<stdio.h>
+#include<math.h>
+
+main()
+{
+    // dichiarazione variabili:
+
+    int n,// dimensione dei 2 array
+        i,// indice di scorrimento degli array
+        ps=0; // variabile prodotto scalare
+    int a[100],
+        b[100];
+
+        // caricamento dei 2 array:
+
+        do
+    {
+        printf("inserisci la dimensione di 2 array: <max 100>\n\n");
+        scanf("%d", &n);
+    } while ((n<1) || (n>100));
+
+    for(i=0;i<n;i++)
+    {
+        printf("\ninserisci l'elemento %d dell'array A\n" ,i+1);
+        scanf("%d", &a[i]);
+        printf("\ninserisci l'elemento %d dell'array B\n" ,i+1);
+        scanf("%d", &b[i]);
+    }
+
+    // calcolo del prodotto scalare:
+
+    for(i=0;i<n;i++)
+    {
+        ps=ps+(a[i]*b[i]);
+    }
+
+    printf("prodotto scalare: %d", ps);
+    return 0;
+}
